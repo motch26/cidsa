@@ -17,6 +17,10 @@ export const Provider = ({ children }) => {
   const [cZip, setCZip] = useState("");
   const [cProvince, setCProvince] = useState("");
 
+  const [collegesArr, setCollegesArr] = useState([]);
+  const [programsArr, setProgramsArr] = useState([]);
+  const [majorsArr, setMajorsArr] = useState([]);
+
   const [campus, setCampus] = useState("");
   const [college, setCollege] = useState("");
   const [program, setProgram] = useState("");
@@ -55,6 +59,9 @@ export const Provider = ({ children }) => {
           step1Data,
           sigURL,
           pictureUrl,
+          collegesArr,
+          programsArr,
+          majorsArr,
         },
         actions: {
           setSID,
@@ -79,6 +86,9 @@ export const Provider = ({ children }) => {
           setStep1Data,
           setPictureUrl,
           setSigURL,
+          setCollegesArr,
+          setProgramsArr,
+          setMajorsArr,
         },
       }}
     >

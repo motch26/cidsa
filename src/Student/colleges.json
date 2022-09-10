@@ -1,0 +1,22 @@
+{
+  "colleges": [
+    {
+      "CIT": "College of Industrial Technology"
+    },
+    {
+      "CCS": "College of Computer Studies"
+    },
+    {
+      "COE": "College of Engineering"
+    },
+    {
+      "CBMA": "College of Business Management and Accountancy"
+    },
+    {
+      "CAS": "College of Arts & Sciences"
+    },
+    {
+      "COED": "College of Education"
+    }
+  ]
+}

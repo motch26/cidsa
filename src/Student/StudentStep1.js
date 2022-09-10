@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import { green } from "@mui/material/colors";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import programs from "./programs.json";
 import { useNavigate } from "react-router-dom";
 import { Context as StudentContext } from "./StudentContext";
@@ -19,9 +19,6 @@ function Student() {
   const navigate = useNavigate();
   const { states, actions } = useContext(StudentContext);
   const campuses = programs.campuses;
-  const [collegesArr, setCollegesArr] = useState([]);
-  const [programsArr, setProgramsArr] = useState([]);
-  const [majorsArr, setMajorsArr] = useState([]);
 
   // const [dialogOpen, setDialogOpen] = useState(false);
   // const [submitted, setSubmitted] = useState(false);
@@ -39,29 +36,29 @@ function Student() {
 
     const campusObject = campuses.find((c) => Object.keys(c)[0] === _campus);
     actions.setCampus(_campus);
-    setCollegesArr(campusObject[_campus]["colleges"]);
+    actions.setCollegesArr(campusObject[_campus]["colleges"]);
   };
 
   const collegeChange = (e) => {
     actions.setProgram("");
     const _college = e.target.value;
-    const collegeObject = collegesArr.find(
+    const collegeObject = states.collegesArr.find(
       (c) => Object.keys(c)[0] === _college
     );
 
     const arr = collegeObject[_college]["programs"];
-    setProgramsArr(arr);
+    actions.setProgramsArr(arr);
     actions.setCollege(_college);
   };
 
   const programChange = (e) => {
     actions.setMajor("");
     const _program = e.target.value;
-    const programObject = programsArr.find(
+    const programObject = states.programsArr.find(
       (p) => Object.keys(p)[0] === _program
     );
     const arr = programObject[_program]["majors"];
-    setMajorsArr(arr);
+    actions.setMajorsArr(arr);
     actions.setProgram(_program);
   };
 
@@ -74,17 +71,9 @@ function Student() {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     actions.setStep1Data(formData);
+    navigate("/student/step2");
   };
 
-  // const submit = () => {
-  //   setSubmitted(true);
-  //   axios
-  //     .post("https://cidsa.chmsu.edu.ph/api/submit.php", finalFormData)
-  //     .then(({ data }) => {
-  //       if (data) navigate("/submitted");
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
   return (
     <Box>
       <Box sx={{ display: "flex", width: "100%" }}>
@@ -329,7 +318,7 @@ function Student() {
                   name="campus"
                   value={states.campus}
                   onChange={campusChange}
-                  defaultValue=""
+                  defaultValue={states.campus}
                 >
                   {campuses.map((c, i) => {
                     const campusName = Object.keys(c)[0];
@@ -351,10 +340,10 @@ function Student() {
                   name="college"
                   value={states.college}
                   onChange={collegeChange}
-                  defaultValue=""
+                  defaultValue={states.college}
                 >
-                  {collegesArr.length > 0 ? (
-                    collegesArr.map((c, i) => {
+                  {states.collegesArr.length > 0 ? (
+                    states.collegesArr.map((c, i) => {
                       const collegeShort = Object.keys(c)[0];
                       const { name } = c[collegeShort];
 
@@ -379,10 +368,10 @@ function Student() {
                   name="program"
                   value={states.program}
                   onChange={programChange}
-                  defaultValue=""
+                  defaultValue={states.program}
                 >
-                  {programsArr.length > 0 ? (
-                    programsArr.map((p, i) => {
+                  {states.programsArr.length > 0 || states.college ? (
+                    states.programsArr.map((p, i) => {
                       const name = Object.keys(p)[0];
 
                       return (
@@ -403,17 +392,17 @@ function Student() {
               </Typography>
               <FormControl
                 fullWidth
-                disabled={majorsArr.length > 0 ? false : true}
+                disabled={states.majorsArr.length > 0 ? false : true}
                 size="small"
               >
                 <Select
                   name="major"
                   value={states.major}
                   onChange={majorChange}
-                  defaultValue=""
+                  defaultValue={states.major}
                 >
-                  {majorsArr.length > 0 ? (
-                    majorsArr.map((m, i) => {
+                  {states.majorsArr.length > 0 || states.program ? (
+                    states.majorsArr.map((m, i) => {
                       return (
                         <MenuItem value={m} key={i}>
                           {m}
@@ -435,6 +424,7 @@ function Student() {
                 fullWidth
                 type="text"
                 required
+                value={states.level}
                 inputProps={{ maxLength: 1 }}
                 onChange={(e) => actions.setLevel(e.target.value)}
                 name="level"
@@ -450,6 +440,7 @@ function Student() {
                 fullWidth
                 type="text"
                 required
+                value={states.section}
                 inputProps={{ maxLength: 1 }}
                 onChange={(e) =>
                   actions.setSection(e.target.value.toString().toUpperCase())
@@ -464,126 +455,10 @@ function Student() {
           type="submit"
           variant="contained"
           sx={{ bgcolor: green[500], my: 2, ml: "auto", display: "block" }}
-          onClick={() => navigate("/student/step2")}
         >
           Next
         </Button>
       </Box>
-
-      {/* <Dialog
-        scroll="paper"
-        maxWidth="sm"
-        fullWidth
-        open={dialogOpen}
-        onClose={() => setDialogOpen(false)}
-      >
-        <DialogTitle sx={{ bgcolor: green[700], color: "white", py: 2, mb: 1 }}>
-          Review Your Data
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText>Proceed data submission?</DialogContentText>
-          <Stack>
-            <Box sx={{ my: 1 }}>
-              <Typography variant="body1" fontWeight={500}>
-                Personal Data
-              </Typography>
-              <Typography variant="body2">{`I.D. No.: ${sID}`}</Typography>
-              <Typography variant="body2">{`Last Name: ${sLastName}`}</Typography>
-              <Typography variant="body2">{`First Name: ${sFirstName}`}</Typography>
-              <Typography variant="body2">{`M.I.: ${sMI}`}</Typography>
-            </Box>
-            <Divider />
-            <Box sx={{ my: 1 }}>
-              <Typography variant="body1" fontWeight={500}>
-                In Case of Emergency
-              </Typography>
-              <Typography variant="body2">{`Last Name: ${cLastName}`}</Typography>
-              <Typography variant="body2">{`First Name: ${cFirstName}`}</Typography>
-              <Typography variant="body2">{`M.I.: ${cMI}`}</Typography>
-              <Typography variant="body2">{`Contact No.: +63${cContact}`}</Typography>
-              <Typography variant="body2">{`Relationship: ${cRelationship}`}</Typography>
-              <Typography variant="body2">{`Street/Block/Brgy.: ${cAddress}`}</Typography>
-              <Typography variant="body2">{`City: ${cCity}`}</Typography>
-              <Typography variant="body2">{`Zip Code: ${cZip}`}</Typography>
-              <Typography variant="body2">{`Province: ${cProvince}`}</Typography>
-            </Box>
-            <Divider />
-            <Box sx={{ my: 1 }}>
-              <Typography variant="body1" fontWeight={500}>
-                {"College & Program"}
-              </Typography>
-              <Typography variant="body2">{`Campus: ${campus}`}</Typography>
-              <Typography variant="body2">{`College: ${college}`}</Typography>
-              <Typography variant="body2">{`Program: ${program}`}</Typography>
-              <Typography variant="body2">{`Major: ${major}`}</Typography>
-              <Typography variant="body2">{`Year Level: ${level}`}</Typography>
-              <Typography variant="body2">{`Section: ${section}`}</Typography>
-            </Box>
-            <Typography variant="caption">
-              By clicking the submit button, I have read and agreed to{" "}
-              <Link
-                underline="none"
-                component="button"
-                color={green[500]}
-                onClick={(e) => setAnchor(e.currentTarget)}
-              >
-                CHMSU Data Privacy Statement
-              </Link>
-              .
-            </Typography>
-            <Popover
-              open={Boolean(anchor)}
-              anchorEl={anchor}
-              onClose={() => setAnchor(null)}
-              anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-              PaperProps={{
-                sx: {
-                  p: 1,
-                  maxWidth: { xs: "90vw", md: 500 },
-                  border: "3px solid",
-                  borderColor: green[500],
-                },
-              }}
-            >
-              <Typography variant="caption">
-                In compliance with Republic Act No. 10173, otherwise known as
-                the Data Privacy Act of 2012. I hereby acknowledge that my
-                personal information provided is solely used for Carlos Hilado
-                Memorial State University. That by virtue of the said law, I
-                freely give my consent and hereby agree to the collections,
-                access and processing of my sensitive personal and privileged
-                information - as defined under RA 10173 - DPC Act 2012 for any
-                legal and all legitimate interests of CHMSU as Higher
-                Educational Institution.
-              </Typography>
-            </Popover>
-          </Stack>
-          {submitted ? (
-            <Alert severity="info">
-              Submitting form... Please don't close the browser.
-            </Alert>
-          ) : null}
-        </DialogContent>
-        <DialogActions>
-          <Button
-            disabled={submitted}
-            size="small"
-            sx={{ color: green[500] }}
-            onClick={() => setDialogOpen(false)}
-          >
-            Cancel
-          </Button>
-          <Button
-            size="small"
-            variant="contained"
-            disabled={submitted}
-            sx={{ bgcolor: green[500] }}
-            onClick={submit}
-          >
-            Submit
-          </Button>
-        </DialogActions>
-      </Dialog> */}
     </Box>
   );
 }

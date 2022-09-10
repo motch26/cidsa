@@ -23,7 +23,6 @@ const StudentStep2 = () => {
   const { states, actions } = useContext(StudentContext);
   let sigPad = useRef();
 
-  const [pictureUpdated, setPictureUpdated] = useState(false);
   const [sigDialogOpen, setSigDialogOpen] = useState(false);
 
   const review = (e) => {
@@ -88,7 +87,7 @@ const StudentStep2 = () => {
                 justifyContent: "center",
               }}
             >
-              {pictureUpdated ? (
+              {states.pictureUrl ? (
                 <Box sx={{ width: 200 }}>
                   <Box
                     sx={{
@@ -110,7 +109,7 @@ const StudentStep2 = () => {
                     fullWidth
                     size="small"
                     sx={{ bgcolor: green[500] }}
-                    onClick={() => setPictureUpdated(false)}
+                    onClick={() => actions.setPictureUrl("")}
                   >
                     Change Picture
                   </Button>
@@ -124,10 +123,10 @@ const StudentStep2 = () => {
                       name="upload-photo"
                       type="file"
                       inputProps={{ accept: "image/jpeg" }}
-                      onChange={async (e) => {
+                      onChange={(e) => {
                         getBase64(e.target.files[0]);
-                        setPictureUpdated(true);
                       }}
+                      autoFocus
                     />
                     <Box
                       sx={{
@@ -330,9 +329,12 @@ const StudentStep2 = () => {
         </Paper>
         <Button
           type="submit"
+          disabled={!(states.pictureUrl && states.sigURL)}
           variant="contained"
           sx={{ bgcolor: green[500], my: 2, ml: "auto", display: "block" }}
-          onClick={() => navigate("/student/review")}
+          onClick={() => {
+            navigate("/student/review");
+          }}
         >
           Next
         </Button>
