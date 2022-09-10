@@ -1,0 +1,95 @@
+{
+  "campuses": [
+    {
+      "Talisay": {
+        "colleges": [
+          {
+            "CIT": {
+              "name": "College of Industrial Technology",
+              "programs": [
+                {
+                  "Bachelor of Science in Industrial Technology": {
+                    "majors": [
+                      "Automotive Technology",
+                      "Drafting Technology",
+                      "Electrical Technology",
+                      "Electronics Technology",
+                      "Fashion and Apparel",
+                      "Food Trades Technology",
+                      "Mechanical Technology",
+                      "Refrigeration & Conditioning"
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "CCS": {
+              "name": "College of Computer Studies",
+              "programs": [
+                {
+                  "Bachelor of Science in Information Systems": {
+                    "majors": []
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "COE": {
+              "name": "College of Engineering",
+              "programs": [
+                { "Bachelor of Science in Civil Engineering": { "majors": [] } }
+              ]
+            }
+          },
+          {
+            "CBMA": {
+              "name": "College of Business Management and Accountancy",
+              "programs": [
+                {
+                  "Bachelor of Science in Hospitality Management": {
+                    "majors": []
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "CAS": {
+              "name": "College of Arts & Sciences",
+              "programs": [
+                { "Bachelor of Arts in Social Science": { "majors": [] } },
+                { "Bachelor of Arts in English Language": { "majors": [] } },
+                { "Bachelor of Science in Psychology": { "majors": [] } },
+                { "Bachelor of Public Administration": { "majors": [] } }
+              ]
+            }
+          },
+          {
+            "COED": {
+              "name": "College of Education",
+              "programs": [
+                {
+                  "Bachelor of Technology and Livelihood Education": {
+                    "majors": ["Industrial Arts", "Home Economics"]
+                  }
+                },
+                {
+                  "Bachelor of Secondary Education Major": {
+                    "majors": ["Science", "Mathematics", "English", "Filipino"]
+                  }
+                },
+                { "Bachelor of Elementary Education": { "majors": [] } },
+                { "Bachelor of Physical Education": { "majors": [] } },
+                { "Bachelor of Special Needs Education": { "majors": [] } },
+                { "Bachelor of Early Childhood Education": { "majors": [] } }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

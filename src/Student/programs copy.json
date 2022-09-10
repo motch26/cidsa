@@ -1,0 +1,266 @@
+{
+  "campuses": [
+    {
+      "Talisay": {
+        "colleges": [
+          {
+            "CIT": {
+              "name": "College of Industrial Technology",
+              "programs": [
+                {
+                  "Bachelor of Science in Industrial Technology": {
+                    "majors": [
+                      "Automotive Technology",
+                      "Drafting Technology",
+                      "Electrical Technology",
+                      "Electronics Technology",
+                      "Fashion and Apparel",
+                      "Food Trades Technology",
+                      "Mechanical Technology",
+                      "Refrigeration & Conditioning"
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "CCS": {
+              "name": "College of Computer Studies",
+              "programs": [
+                {
+                  "Bachelor of Science in Information Systems": {
+                    "majors": []
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "COE": {
+              "name": "College of Engineering",
+              "programs": [
+                { "Bachelor of Science in Civil Engineering": { "majors": [] } }
+              ]
+            }
+          },
+          {
+            "CBMA": {
+              "name": "College of Business Management and Accountancy",
+              "programs": [
+                {
+                  "Bachelor of Science in Hospitality Management": {
+                    "majors": []
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "CAS": {
+              "name": "College of Arts & Sciences",
+              "programs": [
+                { "Bachelor of Arts in Social Science": { "majors": [] } },
+                { "Bachelor of Arts in English Language": { "majors": [] } },
+                { "Bachelor of Science in Psychology": { "majors": [] } },
+                { "Bachelor of Public Administration": { "majors": [] } }
+              ]
+            }
+          },
+          {
+            "COED": {
+              "name": "College of Education",
+              "programs": [
+                {
+                  "Bachelor of Technology and Livelihood Education": {
+                    "majors": ["Industrial Arts", "Home Economics"]
+                  }
+                },
+                {
+                  "Bachelor of Secondary Education Major": {
+                    "majors": ["Science", "Mathematics", "English", "Filipino"]
+                  }
+                },
+                { "Bachelor of Elementary Education": { "majors": [] } },
+                { "Bachelor of Physical Education": { "majors": [] } },
+                { "Bachelor of Special Needs Education": { "majors": [] } },
+                { "Bachelor of Early Childhood Education": { "majors": [] } }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Binalbagan": {
+        "colleges": [
+          {
+            "COF": {
+              "name": "College of Fisheries",
+              "programs": [
+                { "Bachelor of Science in Fisheries": { "majors": [] } }
+              ]
+            }
+          },
+          {
+            "CCJ": {
+              "name": "College of Criminal Justice ",
+              "programs": [
+                { "Bachelor of Science in Criminology": { "majors": [] } }
+              ]
+            }
+          },
+          {
+            "COED": {
+              "name": "College of Education",
+              "programs": [
+                {
+                  "Bachelor of Secondary Education": { "majors": ["Science"] }
+                },
+                { "Bachelor of Elementary Education": { "majors": [] } },
+                {
+                  "Bachelor of Technology and Livelihood Education": {
+                    "majors": ["Home Economics"]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "CBMA": {
+              "name": "College of Business Management and Accountancy",
+              "programs": [
+                {
+                  "Bachelor of Science in Business Administration": {
+                    "majors": ["Financial Management"]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "CCS": {
+              "name": "College of Computer Studies",
+              "programs": [
+                {
+                  "Bachelor of Science in Information Technology": {
+                    "majors": []
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Fortune Towne": {
+        "colleges": [
+          {
+            "CBMA": {
+              "name": "College of Business Management and Accountancy",
+              "programs": [
+                {
+                  "Bachelor of Science in Business Administration": {
+                    "majors": ["Financial Management"]
+                  }
+                },
+                {
+                  "Bachelor of Science in Management Accounting": {
+                    "majors": []
+                  }
+                },
+                {
+                  "Bachelor of Science in Accountancy": { "majors": [] }
+                },
+                {
+                  "Bachelor of Science in Entrepreneurship": { "majors": [] }
+                },
+                {
+                  "Bachelor of Science in Office Administration": {
+                    "majors": []
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "CCS": {
+              "name": "College of Computer Studies",
+              "programs": [
+                {
+                  "Bachelor of Science in Information Systems": { "majors": [] }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Alijis": {
+        "colleges": [
+          {
+            "CCS": {
+              "name": "College of Computer Studies",
+              "programs": [
+                {
+                  "Bachelor of Science in Information Systems": { "majors": [] }
+                },
+                {
+                  "Bachelor of Science in Information Technology": {
+                    "majors": []
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "COE": {
+              "name": "College of Engineering",
+              "programs": [
+                {
+                  "Bachelor of Science in Computer Engineering": {
+                    "majors": []
+                  }
+                },
+                {
+                  "Bachelor of Science in Electronics Engineering": {
+                    "majors": []
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "CIT": {
+              "name": "College of Industrial Technology",
+              "programs": [
+                {
+                  "Bachelor of Science in Industrial Technology": {
+                    "majors": []
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "COED": {
+              "name": "College of Education",
+              "programs": [
+                {
+                  "Bachelor of Technical Vocational Teacher Education": {
+                    "majors": [
+                      "Electrical Technology",
+                      "Electronics Technology"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
