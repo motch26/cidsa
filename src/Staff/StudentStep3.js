@@ -12,16 +12,14 @@ import {} from "@mui/icons-material";
 import { green } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../Context";
-import collegesData from "./colleges.json";
 import axios from "axios";
-const StudentStep3 = () => {
+const StaffStep3 = () => {
   const navigate = useNavigate();
 
   const [submitted, setSubmitted] = useState(false);
-  const { colleges } = collegesData;
 
-  const { student } = useContext(Context);
-  const { states } = student;
+  const { staff } = useContext(Context);
+  const { states } = staff;
 
   const urltoFile = (url, filename, mimeType) => {
     return fetch(url)
@@ -33,30 +31,20 @@ const StudentStep3 = () => {
       });
   };
 
-  let currentCollegeObject = {};
-  let currentMajor = "";
-
-  if (states.college) {
-    currentCollegeObject = colleges.find(
-      (c) => Object.keys(c)[0] === states.college
-    );
-  }
-  if (states.major) currentMajor = "major in " + states.major;
-
   const submit = async () => {
     setSubmitted(true);
     const _picture = await urltoFile(
-      states.pictureUrl,
-      states.sID + ".jpg",
+      states.staffPictureUrl,
+      states.staffID + ".jpg",
       "image/jpeg"
     );
     const _sig = await urltoFile(
-      states.sigURL,
-      states.sID + ".jpg",
+      states.staffSigURL,
+      states.staffSID + ".jpg",
       "image/jpeg"
     );
-    states.step1Data.append("picture", _picture);
-    states.step1Data.append("signature", _sig);
+    states.staffStep1Data.append("picture", _picture);
+    states.staffStep1Data.append("signature", _sig);
     axios
       .post("https://cidsa.chmsu.edu.ph/api/submit.php", states.step1Data, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -85,7 +73,7 @@ const StudentStep3 = () => {
             color: green[700],
             cursor: "pointer",
           }}
-          onClick={() => navigate("/student/step2")}
+          onClick={() => navigate("/staff/step2")}
         >
           {"<  Go Back"}
         </Link>
@@ -129,7 +117,7 @@ const StudentStep3 = () => {
                 }}
               >
                 <img
-                  src={states.sigURL}
+                  src={states.staffSigUrl}
                   style={{ width: "100%", height: "auto" }}
                   alt="signature"
                 />
@@ -139,23 +127,14 @@ const StudentStep3 = () => {
                     fontWeight: 700,
                     textTransform: "uppercase",
                   }}
-                >{`${states.sFirstName} ${states.sMI}. ${states.sLastName}`}</Typography>
+                >{`${states.staffFirstName} ${states.staffMI}. ${states.staffLastName}`}</Typography>
                 <Typography
                   variant="body1"
                   sx={{ lineHeight: 1, fontWeight: 500 }}
                 >
-                  {states.program}
+                  {states.staffCategory}
                 </Typography>
-                <Typography variant="body2" sx={{ lineHeight: 1 }}>
-                  {currentMajor}
-                </Typography>
-                <Typography
-                  variant="caption"
-                  sx={{ lineHeight: 1, fontWeight: 500 }}
-                >{`${states.level} - ${states.section}`}</Typography>
-                <Typography variant="caption">
-                  {currentCollegeObject[states.college]}
-                </Typography>
+
                 <Typography
                   variant="body1"
                   sx={{
@@ -235,4 +214,4 @@ const StudentStep3 = () => {
   );
 };
 
-export default StudentStep3;
+export default StaffStep3;

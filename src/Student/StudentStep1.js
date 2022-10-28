@@ -14,16 +14,12 @@ import { green } from "@mui/material/colors";
 import React, { useContext } from "react";
 import programs from "./programs.json";
 import { useNavigate } from "react-router-dom";
-import { Context as StudentContext } from "./StudentContext";
+import { Context } from "../Context";
 function Student() {
   const navigate = useNavigate();
-  const { states, actions } = useContext(StudentContext);
+  const { student } = useContext(Context);
+  const { states, actions } = student;
   const campuses = programs.campuses;
-
-  // const [dialogOpen, setDialogOpen] = useState(false);
-  // const [submitted, setSubmitted] = useState(false);
-
-  // const [anchor, setAnchor] = useState(null);
 
   const toTitleCase = (str) => {
     return str.replace(/\w\S*/g, function (txt) {

@@ -6,14 +6,22 @@ import {
   responsiveFontSizes,
   ThemeProvider,
 } from "@mui/material/styles";
-import StudentStep1 from "./Student/StudentStep1";
 import { CssBaseline } from "@mui/material";
-import Submitted from "./Submitted";
-import { Provider as StudentProvider } from "./Student/StudentContext";
+import { Provider } from "./Context";
+
 import Home from "./Home";
-import Policy from "./Student/Policy";
+
+import StudentPolicy from "./Student/Policy";
+import StudentStep1 from "./Student/StudentStep1";
 import StudentStep2 from "./Student/StudentStep2";
 import StudentStep3 from "./Student/StudentStep3";
+
+import StaffPolicy from "./Staff/Policy";
+
+import Submitted from "./Submitted";
+import StaffStep1 from "./Staff/StaffStep1";
+import StaffStep2 from "./Staff/StaffStep2";
+import StaffStep3 from "./Staff/StudentStep3";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 let theme = createTheme();
@@ -23,20 +31,26 @@ root.render(
     <CssBaseline />
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <StudentProvider>
+        <Provider>
           <Routes>
             <Route path="/" element={<Home />}>
               <Route path="student">
-                <Route index element={<Policy />} />
+                <Route index element={<StudentPolicy />} />
                 <Route path="step1" element={<StudentStep1 />} />
                 <Route path="step2" element={<StudentStep2 />} />
                 <Route path="review" element={<StudentStep3 />} />
+              </Route>
+              <Route path="staff">
+                <Route index element={<StaffPolicy />} />
+                <Route path="step1" element={<StaffStep1 />} />
+                <Route path="step2" element={<StaffStep2 />} />
+                <Route path="review" element={<StaffStep3 />} />
               </Route>
             </Route>
 
             <Route path="submitted" element={<Submitted />} />
           </Routes>
-        </StudentProvider>
+        </Provider>
       </BrowserRouter>
     </ThemeProvider>
   </React.StrictMode>

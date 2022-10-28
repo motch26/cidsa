@@ -35,6 +35,7 @@ const Home = () => {
           </Typography>
         </Box>
         <Divider />
+
         <Box sx={{ py: 1, minHeight: "90vh", display: "flex" }}>
           <Outlet />
         </Box>

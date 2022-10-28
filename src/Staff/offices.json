@@ -1,0 +1,62 @@
+{
+  "campuses": [
+    {
+      "Talisay": {
+        "offices": [
+          "Accounting Office",
+          "Alumni Office",
+          "Bids and Awards Committee Office",
+          "BSHM Laboratory",
+          "BSIS Laboratory",
+          "BSIT Office",
+          "Business Affairs Office",
+          "Chief Admin Office",
+          "Cashier's Office",
+          "Center for External Affairs",
+          "College of Arts and Sciences",
+          "College of Industrial Technology",
+          "College of Engineering",
+          "College of Education",
+          "College Secretary Office",
+          "Commission on Audit Office",
+          "CSC Field Office",
+          "Cultural and Arts Affairs Office",
+          "Dental Clinic",
+          "Disaster Risk Reduction and Management Office",
+          "Extension and Community Services Office",
+          "Fermin Campus",
+          "Finance Office",
+          "Gender and Development Office",
+          "General Services Office",
+          "Graduate Studies and Continuing Education Office",
+          "Guidance Services Office",
+          "Human and Resource Management Office",
+          "Information and Communications Technology Office",
+          "Intellectual Property Management Office",
+          "National Service Training Program Office",
+          "Office of the Board Secretary",
+          "Office of the Student Affairs",
+          "OJT Office",
+          "Planning, Monitoring, and Evaluation Office",
+          "President's Office",
+          "Physical Plant Development and Management Office",
+          "Psychology Laboratory",
+          "Quality Assurance and Accreditation Office",
+          "Records Office",
+          "Registrar's Office",
+          "Research Office",
+          "Scholarship Office",
+          "Science Laboratory",
+          "Solid Waste Management Office",
+          "Property and Supply Management Office",
+          "Training Service Office",
+          "University Library",
+          "Vice President of Academic Affairs Office",
+          "Vice President of Administration and Finance Office",
+          "Vice President of Research and Extension Office",
+          "Water Refilling Station"
+        ]
+      }
+    }
+  ]
+}

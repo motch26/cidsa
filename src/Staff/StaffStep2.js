@@ -19,9 +19,9 @@ import React, { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../Context";
 import SignatureCanvas from "react-signature-canvas";
-const StudentStep2 = () => {
-  const { student } = useContext(Context);
-  const { actions, states } = student;
+const StaffStep2 = () => {
+  const { staff } = useContext(Context);
+  const { actions, states } = staff;
   let sigPad = useRef();
 
   const [sigDialogOpen, setSigDialogOpen] = useState(false);
@@ -34,7 +34,7 @@ const StudentStep2 = () => {
   const getBase64 = (file) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = () => actions.setPictureUrl(reader.result);
+    reader.onload = () => actions.setStaffPictureUrl(reader.result);
     reader.onerror = (err) => err;
   };
 
@@ -56,7 +56,7 @@ const StudentStep2 = () => {
             color: green[700],
             cursor: "pointer",
           }}
-          onClick={() => navigate("/student/step1")}
+          onClick={() => navigate("/staff/step1")}
         >
           {"<  Go Back"}
         </Link>
@@ -88,7 +88,7 @@ const StudentStep2 = () => {
                 justifyContent: "center",
               }}
             >
-              {states.pictureUrl ? (
+              {states.staffPictureUrl ? (
                 <Box sx={{ width: 200 }}>
                   <Box
                     sx={{
@@ -100,7 +100,7 @@ const StudentStep2 = () => {
                     }}
                   >
                     <img
-                      src={states.pictureUrl}
+                      src={states.staffPictureUrl}
                       style={{ width: "100%", height: "100%" }}
                       alt="idPicture"
                     />
@@ -111,7 +111,7 @@ const StudentStep2 = () => {
                     fullWidth
                     size="small"
                     sx={{ bgcolor: green[500] }}
-                    onClick={() => actions.setPictureUrl("")}
+                    onClick={() => actions.setStaffPictureUrl("")}
                   >
                     Change Picture
                   </Button>
@@ -304,11 +304,11 @@ const StudentStep2 = () => {
             }}
           >
             <Box>
-              {states.sigURL ? (
+              {states.staffSigUrl ? (
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                   <img
                     alt="sig"
-                    src={states.sigURL}
+                    src={states.staffSigUrl}
                     style={{ width: "100%", height: "auto", marginBottom: 10 }}
                   />
                   <Button
@@ -341,11 +341,11 @@ const StudentStep2 = () => {
         </Paper>
         <Button
           type="button"
-          disabled={!(states.pictureUrl && states.sigURL)}
+          disabled={!(states.staffPictureUrl && states.staffSigUrl)}
           variant="contained"
           sx={{ bgcolor: green[500], my: 2, ml: "auto", display: "block" }}
           onClick={() => {
-            navigate("/student/review");
+            navigate("/staff/review");
           }}
         >
           Next
@@ -397,7 +397,7 @@ const StudentStep2 = () => {
                 <Button
                   type="button"
                   onClick={() => {
-                    actions.setSigURL(
+                    actions.setStaffSigUrl(
                       sigPad.getCanvas().toDataURL("image/png")
                     );
                     sigPad.clear();
@@ -417,4 +417,4 @@ const StudentStep2 = () => {
   );
 };
 
-export default StudentStep2;
+export default StaffStep2;

@@ -6,22 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Policy = () => {
   const navigate = useNavigate();
   return (
-    <Box>
-      <Typography
-        variant="caption"
-        sx={{
-          px: 1,
-          bgcolor: green[500],
-          border: "1px solid",
-          width: "fit-content",
-          display: "block",
-          ml: "auto",
-          mb: 2,
-          color: "white",
-        }}
-      >
-        Best use in smartphones
-      </Typography>
+    <Box sx={{ mt: 5 }}>
       <Box sx={{ width: "100%", display: "flex" }}>
         <Typography
           variant="h6"

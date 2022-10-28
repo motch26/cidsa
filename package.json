@@ -1,5 +1,6 @@
 {
   "name": "cidsa",
+  "homepage": "https://cidsa.chmsu.edu.ph/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
