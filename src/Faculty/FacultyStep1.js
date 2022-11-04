@@ -14,73 +14,25 @@ import { green } from "@mui/material/colors";
 import React, { useContext } from "react";
 import offices from "./offices.json";
 import { useNavigate } from "react-router-dom";
-import { Context as StaffContext } from "./../Context";
-import { useState } from "react";
-import { getValue } from "@testing-library/user-event/dist/utils";
+import { Context as StaffContext } from "../Context";
+
 function StaffStep1() {
   const navigate = useNavigate();
-  const { staff } = useContext(StaffContext);
-  const { actions, states } = staff;
+  const { faculty } = useContext(StaffContext);
+  const { actions, states } = faculty;
   const campuses = offices.campuses;
-
-  // const [officesArr, setOfficesArr] = useState([]);
-
-  const category = [
-    { gass: "General Administrative Support & Services" },
-    { cos: "Contract of Service" },
-  ];
-  // const [dialogOpen, setDialogOpen] = useState(false);
-  // const [submitted, setSubmitted] = useState(false);
-
-  // const [anchor, setAnchor] = useState(null);
 
   const toTitleCase = (str) => {
     return str.replace(/\w\S*/g, function (txt) {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
   };
-  // const campusChange = (e) => {
-  //   actions.setCollege("");
-  //   const _campus = e.target.value;
-
-  //   const campusObject = campuses.find((c) => Object.keys(c)[0] === _campus);
-  //   actions.setCampus(_campus);
-  //   actions.setCollegesArr(campusObject[_campus]["colleges"]);
-  // };
-
-  // const collegeChange = (e) => {
-  //   actions.setProgram("");
-  //   const _college = e.target.value;
-  //   const collegeObject = states.collegesArr.find(
-  //     (c) => Object.keys(c)[0] === _college
-  //   );
-
-  //   const arr = collegeObject[_college]["programs"];
-  //   actions.setProgramsArr(arr);
-  //   actions.setCollege(_college);
-  // };
-
-  // const programChange = (e) => {
-  //   actions.setMajor("");
-  //   const _program = e.target.value;
-  //   const programObject = states.programsArr.find(
-  //     (p) => Object.keys(p)[0] === _program
-  //   );
-  //   const arr = programObject[_program]["majors"];
-  //   actions.setMajorsArr(arr);
-  //   actions.setProgram(_program);
-  // };
-
-  // const majorChange = (e) => {
-  //   const _major = e.target.value;
-  //   actions.setMajor(_major);
-  // };
 
   const review = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    actions.setStaffStep1Data(formData);
-    navigate("/staff/step2");
+    actions.setFacultyStep1Data(formData);
+    navigate("/faculty/step2");
   };
 
   return (
@@ -111,12 +63,12 @@ function StaffStep1() {
                 I.D. No.:
               </Typography>
               <TextField
-                onChange={(e) => actions.setStaffID(e.target.value)}
+                onChange={(e) => actions.setFacultyID(e.target.value)}
                 name="idNo"
                 size="small"
                 fullWidth
                 required
-                value={states.staffID}
+                value={states.facultyID}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -127,9 +79,9 @@ function StaffStep1() {
                 size="small"
                 fullWidth
                 required
-                value={states.staffLastName}
+                value={states.facultyLastName}
                 onChange={(e) =>
-                  actions.setStaffLastName(toTitleCase(e.target.value))
+                  actions.setFacultyLastName(toTitleCase(e.target.value))
                 }
                 name="lastName"
               />
@@ -142,9 +94,9 @@ function StaffStep1() {
                 size="small"
                 fullWidth
                 required
-                value={states.staffFirstName}
+                value={states.facultyFirstName}
                 onChange={(e) =>
-                  actions.setStaffFirstName(toTitleCase(e.target.value))
+                  actions.setFacultyFirstName(toTitleCase(e.target.value))
                 }
                 name="firstName"
               />
@@ -158,9 +110,9 @@ function StaffStep1() {
                 fullWidth
                 inputProps={{ maxLength: 3 }}
                 helperText="Leave blank if not applicable."
-                value={states.staffMI}
+                value={states.facultyMI}
                 onChange={(e) =>
-                  actions.setStaffMI(e.target.value.toString().toUpperCase())
+                  actions.setFacultyMI(e.target.value.toString().toUpperCase())
                 }
                 name="mi"
               />
@@ -174,19 +126,19 @@ function StaffStep1() {
                 fullWidth
                 inputProps={{ maxLength: 10 }}
                 helperText="mm/dd/yyyy"
-                value={states.staffDOB}
+                value={states.facultyDOB}
                 onChange={(e) => {
                   let value = e.target.value.toString();
                   if (value.length === 2) value += "/";
                   else if (value.length === 5) value += "/";
-                  actions.setStaffDOB(value);
+                  actions.setFacultyDOB(value);
                 }}
                 onKeyDown={(e) => {
                   if (e.key === "Backspace") {
-                    var val = states.staffDOB;
+                    var val = states.facultyDOB;
                     if (val.length === 3 || val.length === 6) {
                       val = val.slice(0, val.length - 1);
-                      actions.setStaffDOB(val);
+                      actions.setFacultyDOB(val);
                     }
                   }
                 }}
@@ -202,14 +154,14 @@ function StaffStep1() {
                 size="small"
                 fullWidth
                 required
-                value={states.staffContact}
+                value={states.facultyContact}
                 inputProps={{ maxLength: 10 }}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">+63</InputAdornment>
                   ),
                 }}
-                onChange={(e) => actions.setStaffContact(e.target.value)}
+                onChange={(e) => actions.setFacultyContact(e.target.value)}
                 name="contact"
               />
             </Grid>
@@ -221,9 +173,9 @@ function StaffStep1() {
                 size="small"
                 fullWidth
                 inputProps={{ maxLength: 3 }}
-                value={states.staffBloodType}
+                value={states.facultyBloodType}
                 onChange={(e) =>
-                  actions.setStaffBloodType(
+                  actions.setFacultyBloodType(
                     e.target.value.toString().toUpperCase()
                   )
                 }
@@ -238,9 +190,9 @@ function StaffStep1() {
                 size="small"
                 fullWidth
                 inputProps={{ maxLength: 11 }}
-                value={states.staffGSIS}
+                value={states.facultyGSIS}
                 onChange={(e) =>
-                  actions.setStaffGSIS(e.target.value.toString())
+                  actions.setFacultyGSIS(e.target.value.toString())
                 }
                 name="gsis"
               />
@@ -253,8 +205,10 @@ function StaffStep1() {
                 size="small"
                 fullWidth
                 inputProps={{ maxLength: 9 }}
-                value={states.staffTIN}
-                onChange={(e) => actions.setStaffTIN(e.target.value.toString())}
+                value={states.facultyTIN}
+                onChange={(e) =>
+                  actions.setFacultyTIN(e.target.value.toString())
+                }
                 name="tin"
               />
             </Grid>
@@ -267,9 +221,9 @@ function StaffStep1() {
                 size="small"
                 fullWidth
                 inputProps={{ maxLength: 12 }}
-                value={states.staffPhilHealth}
+                value={states.facultyPhilHealth}
                 onChange={(e) =>
-                  actions.setStaffPhilHealth(e.target.value.toString())
+                  actions.setFacultyPhilHealth(e.target.value.toString())
                 }
                 name="philHealth"
               />
@@ -283,9 +237,9 @@ function StaffStep1() {
                 fullWidth
                 required
                 inputProps={{ maxLength: 12 }}
-                value={states.staffPagibig}
+                value={states.facultyPagibig}
                 onChange={(e) =>
-                  actions.setStaffPagibig(toTitleCase(e.target.value))
+                  actions.setFacultyPagibig(toTitleCase(e.target.value))
                 }
                 name="pagibig"
               />
@@ -298,9 +252,9 @@ function StaffStep1() {
                 size="small"
                 fullWidth
                 required
-                value={states.staffAddress}
+                value={states.facultyAddress}
                 onChange={(e) =>
-                  actions.setStaffAddress(toTitleCase(e.target.value))
+                  actions.setFacultyAddress(toTitleCase(e.target.value))
                 }
                 name="address"
               />
@@ -313,9 +267,9 @@ function StaffStep1() {
                 size="small"
                 fullWidth
                 required
-                value={states.staffCity}
+                value={states.facultyCity}
                 onChange={(e) =>
-                  actions.setStaffCity(toTitleCase(e.target.value))
+                  actions.setFacultyCity(toTitleCase(e.target.value))
                 }
                 name="city"
               />
@@ -328,9 +282,9 @@ function StaffStep1() {
                 size="small"
                 fullWidth
                 required
-                value={states.staffProvince}
+                value={states.facultyProvince}
                 onChange={(e) =>
-                  actions.setStaffProvince(toTitleCase(e.target.value))
+                  actions.setFacultyProvince(toTitleCase(e.target.value))
                 }
                 name="province"
               />
@@ -350,9 +304,9 @@ function StaffStep1() {
                 size="small"
                 fullWidth
                 required
-                value={states.staffCFullName}
+                value={states.facultyCFullName}
                 onChange={(e) =>
-                  actions.setStaffCFullName(toTitleCase(e.target.value))
+                  actions.setFacultyCFullName(toTitleCase(e.target.value))
                 }
                 name="cFullName"
               />
@@ -366,14 +320,14 @@ function StaffStep1() {
                 size="small"
                 fullWidth
                 required
-                value={states.staffCContact}
+                value={states.facultyCContact}
                 inputProps={{ maxLength: 10 }}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">+63</InputAdornment>
                   ),
                 }}
-                onChange={(e) => actions.setStaffCContact(e.target.value)}
+                onChange={(e) => actions.setFacultyCContact(e.target.value)}
                 name="cContact"
               />
             </Grid>
@@ -391,16 +345,16 @@ function StaffStep1() {
               <FormControl fullWidth required size="small">
                 <Select
                   name="campus"
-                  value={states.staffCampus}
+                  value={states.facultyCampus}
                   onChange={(e) => {
                     const value = e.target.value;
                     const obj = campuses.find(
                       (c) => Object.keys(c)[0] === value
                     );
-                    actions.setOfficesArr(obj[value]["offices"]);
-                    actions.setStaffCampus(value);
+                    actions.setFacultyCollegesArr(obj[value]["offices"]);
+                    actions.setFacultyCampus(value);
                   }}
-                  defaultValue={states.staffCampus}
+                  defaultValue=""
                 >
                   {campuses.map((c, i) => {
                     const campusName = Object.keys(c)[0];
@@ -413,41 +367,34 @@ function StaffStep1() {
                 </Select>
               </FormControl>
             </Grid>
+
             <Grid item xs={12} md={6}>
               <Typography variant="body1" sx={{ fontWeight: 500 }}>
-                Category:
+                Designation:
               </Typography>
-              <FormControl fullWidth required size="small">
-                <Select
-                  name="category"
-                  value={states.staffCategory}
-                  onChange={(e) => actions.setStaffCategory(e.target.value)}
-                  defaultValue={states.staffCategory}
-                >
-                  {category.map((c, i) => {
-                    const acronym = Object.keys(c)[0];
-                    return (
-                      <MenuItem value={c[acronym]} key={i}>
-                        {c[acronym]}
-                      </MenuItem>
-                    );
-                  })}
-                </Select>
-              </FormControl>
+              <TextField
+                size="small"
+                fullWidth
+                value={states.designation}
+                onChange={(e) => actions.setDesignation(e.target.value)}
+                name="designation"
+                helperText="For faculty with staff designation"
+              />
             </Grid>
-            <Grid item xs={12}>
+
+            <Grid item xs={12} md={6}>
               <Typography variant="body1" sx={{ fontWeight: 500 }}>
-                Office:
+                College:
               </Typography>
               <FormControl fullWidth required size="small">
                 <Select
                   name="office"
-                  value={states.staffOffice}
-                  onChange={(e) => actions.setStaffOffice(e.target.value)}
-                  defaultValue={states.staffOffice}
+                  value={states.facultyOffice}
+                  onChange={(e) => actions.setFacultyOffice(e.target.value)}
+                  defaultValue=""
                 >
-                  {states.officesArr.length > 0
-                    ? states.officesArr.map((o, i) => {
+                  {states.facultyCollegesArr.length > 0
+                    ? states.facultyCollegesArr.map((o, i) => {
                         return (
                           <MenuItem value={o} key={i}>
                             {o}

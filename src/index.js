@@ -21,7 +21,12 @@ import StaffPolicy from "./Staff/Policy";
 import Submitted from "./Submitted";
 import StaffStep1 from "./Staff/StaffStep1";
 import StaffStep2 from "./Staff/StaffStep2";
-import StaffStep3 from "./Staff/StudentStep3";
+import StaffStep3 from "./Staff/StaffStep3";
+
+import FacultyPolicy from "./Faculty/Policy";
+import FacultyStep1 from "./Faculty/FacultyStep1";
+import FacultyStep2 from "./Faculty/FacultyStep2";
+import FacultyStep3 from "./Faculty/FacultyStep3";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 let theme = createTheme();
@@ -45,6 +50,12 @@ root.render(
                 <Route path="step1" element={<StaffStep1 />} />
                 <Route path="step2" element={<StaffStep2 />} />
                 <Route path="review" element={<StaffStep3 />} />
+              </Route>
+              <Route path="faculty">
+                <Route index element={<FacultyPolicy />} />
+                <Route path="step1" element={<FacultyStep1 />} />
+                <Route path="step2" element={<FacultyStep2 />} />
+                <Route path="review" element={<FacultyStep3 />} />
               </Route>
             </Route>
 

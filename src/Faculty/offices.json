@@ -1,0 +1,16 @@
+{
+  "campuses": [
+    {
+      "Talisay": {
+        "offices": [
+          "College of Arts and Sciences",
+          "College of Computer Studies",
+          "College of Business Management and Accountancy",
+          "College of Education",
+          "College of Engineering",
+          "College of Industrial Technology"
+        ]
+      }
+    }
+  ]
+}

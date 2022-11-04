@@ -60,6 +60,38 @@ export const Provider = ({ children }) => {
   const [staffStep1Data, setStaffStep1Data] = useState(new FormData());
   const [staffPictureUrl, setStaffPictureUrl] = useState("");
   const [staffSigUrl, setStaffSigUrl] = useState("");
+
+  const [officesArr, setOfficesArr] = useState([]);
+
+  const [facultyID, setFacultyID] = useState("");
+  const [facultyFirstName, setFacultyFirstName] = useState("");
+  const [facultyMI, setFacultyMI] = useState("");
+  const [facultyLastName, setFacultyLastName] = useState("");
+  const [facultyDOB, setFacultyDOB] = useState("");
+  const [facultyBloodType, setFacultyBloodType] = useState("");
+  const [facultyGSIS, setFacultyGSIS] = useState("");
+  const [facultyTIN, setFacultyTIN] = useState("");
+  const [facultyPhilHealth, setFacultyPhilHealth] = useState("");
+  const [facultyPagibig, setFacultyPagibig] = useState("");
+  const [facultyAddress, setFacultyAddress] = useState("");
+  const [facultyCity, setFacultyCity] = useState("");
+  const [facultyProvince, setFacultyProvince] = useState("");
+  const [facultyContact, setFacultyContact] = useState("");
+
+  const [facultyCFullName, setFacultyCFullName] = useState("");
+  const [facultyCContact, setFacultyCContact] = useState("");
+
+  const [facultyCampus, setFacultyCampus] = useState("");
+  const [facultyOffice, setFacultyOffice] = useState("");
+  const [facultyCategory, setFacultyCategory] = useState("");
+
+  const [facultyStep1Data, setFacultyStep1Data] = useState(new FormData());
+  const [facultyPictureUrl, setFacultyPictureUrl] = useState("");
+  const [facultySigUrl, setFacultySigUrl] = useState("");
+
+  const [facultyCollegesArr, setFacultyCollegesArr] = useState([]);
+
+  const [designation, setDesignation] = useState("");
   return (
     <Context.Provider
       value={{
@@ -143,6 +175,7 @@ export const Provider = ({ children }) => {
             staffStep1Data,
             staffPictureUrl,
             staffSigUrl,
+            officesArr,
           },
           actions: {
             setStaffID,
@@ -167,11 +200,64 @@ export const Provider = ({ children }) => {
             setStaffStep1Data,
             setStaffPictureUrl,
             setStaffSigUrl,
+            setOfficesArr,
           },
         },
         faculty: {
-          states: {},
-          actions: {},
+          states: {
+            facultyID,
+            facultyFirstName,
+            facultyMI,
+            facultyLastName,
+            facultyDOB,
+            facultyBloodType,
+            facultyGSIS,
+            facultyTIN,
+            facultyPhilHealth,
+            facultyPagibig,
+            facultyAddress,
+            facultyCity,
+            facultyProvince,
+            facultyContact,
+            facultyCFullName,
+            facultyCContact,
+            facultyCampus,
+            facultyOffice,
+            facultyCategory,
+            facultyStep1Data,
+            facultyPictureUrl,
+            facultySigUrl,
+            officesArr,
+            designation,
+            facultyCollegesArr,
+          },
+          actions: {
+            setFacultyID,
+            setFacultyFirstName,
+            setFacultyMI,
+            setFacultyLastName,
+            setFacultyDOB,
+            setFacultyBloodType,
+            setFacultyGSIS,
+            setFacultyTIN,
+            setFacultyPhilHealth,
+            setFacultyPagibig,
+            setFacultyAddress,
+            setFacultyCity,
+            setFacultyProvince,
+            setFacultyContact,
+            setFacultyCFullName,
+            setFacultyCContact,
+            setFacultyCampus,
+            setFacultyOffice,
+            setFacultyCategory,
+            setFacultyStep1Data,
+            setFacultyPictureUrl,
+            setFacultySigUrl,
+            setOfficesArr,
+            setFacultyCollegesArr,
+            setDesignation,
+          },
         },
       }}
     >

@@ -3,6 +3,7 @@ import {
   Alert,
   Box,
   Button,
+  Divider,
   Grid,
   Link,
   Paper,
@@ -39,17 +40,22 @@ const StaffStep3 = () => {
       "image/jpeg"
     );
     const _sig = await urltoFile(
-      states.staffSigURL,
-      states.staffSID + ".jpg",
+      states.staffSigUrl,
+      states.staffID + ".jpg",
       "image/jpeg"
     );
     states.staffStep1Data.append("picture", _picture);
     states.staffStep1Data.append("signature", _sig);
     axios
-      .post("https://cidsa.chmsu.edu.ph/api/submit.php", states.step1Data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
+      .post(
+        "https://cidsa.chmsu.edu.ph/api/staffSubmit.php",
+        states.staffStep1Data,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      )
       .then(({ data }) => {
+        console.log(data);
         if (data) navigate("/submitted");
       })
       .catch((err) => console.log(err));
@@ -132,7 +138,7 @@ const StaffStep3 = () => {
                   variant="body1"
                   sx={{ lineHeight: 1, fontWeight: 500 }}
                 >
-                  {states.staffCategory}
+                  {states.staffOffice}
                 </Typography>
 
                 <Typography
@@ -141,9 +147,10 @@ const StaffStep3 = () => {
                     bgcolor: green[500],
                     fontWeight: 700,
                     color: "white",
+                    lineHeight: "1.4rem",
                   }}
                 >
-                  STUDENT
+                  {states.staffCategory}
                 </Typography>
               </Box>
             </Grid>
@@ -162,7 +169,7 @@ const StaffStep3 = () => {
                 alt="idPicture"
                 width={150}
                 height={150}
-                src={states.pictureUrl}
+                src={states.staffPictureUrl}
                 style={{
                   border: "3px solid",
                   borderColor: green[500],
@@ -180,25 +187,95 @@ const StaffStep3 = () => {
           <Alert>
             This is for reference only and not the actual ID layout.
           </Alert>
-          <Box sx={{ p: 1, display: "flex", flexDirection: "column" }}>
-            <Typography
-              variant="body1"
-              sx={{ fontWeight: 700, color: green[700] }}
-            >
-              In case of emergency, please contact:
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{ fontWeight: 700, textTransform: "uppercase" }}
-            >{`${states.cFirstName} ${states.cMI}. ${states.cLastName}`}</Typography>
-            <Typography variant="body2">{`${states.cAddress}, ${states.cCity}, ${states.cZip}`}</Typography>
-            <Typography variant="body2">{states.cProvince}</Typography>
-            <Typography
-              variant="body2"
-              sx={{ fontWeight: 700 }}
-            >{`+63${states.cContact}`}</Typography>
-            <Box sx={{ mt: 1, p: 1, bgcolor: green[500] }}></Box>
-          </Box>
+          <Grid container spacing={1}>
+            <Grid item xs={12} md={7}>
+              <Box sx={{ p: 1, display: "flex", flexDirection: "column" }}>
+                <Typography sx={{ fontSize: 12 }}>
+                  <strong>Address:</strong>
+                </Typography>
+                <Typography sx={{ fontSize: 12 }}>
+                  {`${states.staffAddress}, ${states.staffCity}, ${states.staffProvince}`}
+                </Typography>
+                <Typography sx={{ fontSize: 12 }}>
+                  <strong>Contact Number:</strong>
+                </Typography>
+                <Typography sx={{ fontSize: 12 }}>
+                  {`+63${states.staffContact}`}
+                </Typography>
+                <Divider />
+                <Typography
+                  variant="body1"
+                  sx={{ fontWeight: 700, color: green[700] }}
+                >
+                  In case of emergency, please contact:
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ fontWeight: 700, textTransform: "uppercase" }}
+                >{`${states.staffCFullName}`}</Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ fontWeight: 700 }}
+                >{`+63${states.staffCContact}`}</Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={5}>
+              <Box sx={{ p: 1, display: "flex", flexDirection: "column" }}>
+                <Grid container spacing={1}>
+                  <Grid item xs={6}>
+                    <Typography sx={{ fontSize: 12 }}>
+                      <strong>Date of Birth:</strong>
+                    </Typography>
+                    <Typography sx={{ fontSize: 12 }}>
+                      {states.staffDOB}
+                    </Typography>
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    <Typography sx={{ fontSize: 12 }}>
+                      <strong>Blood Type:</strong>
+                    </Typography>
+                    <Typography sx={{ fontSize: 12 }}>
+                      {states.staffBloodType}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography sx={{ fontSize: 12 }}>
+                      <strong>TIN:</strong>
+                    </Typography>
+                    <Typography sx={{ fontSize: 12 }}>
+                      {states.staffTIN}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography sx={{ fontSize: 12 }}>
+                      <strong>PhilHealth:</strong>
+                    </Typography>
+                    <Typography sx={{ fontSize: 12 }}>
+                      {states.staffPhilHealth}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography sx={{ fontSize: 12 }}>
+                      <strong>PAGIBIG:</strong>
+                    </Typography>
+                    <Typography sx={{ fontSize: 12 }}>
+                      {states.staffPagibig}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography sx={{ fontSize: 12 }}>
+                      <strong>GSIS:</strong>
+                    </Typography>
+                    <Typography sx={{ fontSize: 12 }}>
+                      {states.staffGSIS}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Box>
+            </Grid>
+          </Grid>
+          <Box sx={{ mt: 1, p: 1, bgcolor: green[500] }}></Box>
         </Box>
       </Paper>
       <Button
@@ -208,7 +285,7 @@ const StaffStep3 = () => {
         sx={{ bgcolor: green[500], my: 2, mx: "auto", display: "block" }}
         onClick={submit}
       >
-        Submit
+        {submitted ? "Uploading... Dont' Close" : "Submit"}
       </Button>
     </Box>
   );
